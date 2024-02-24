@@ -5,6 +5,7 @@ import { Rightbar } from './components/Rightbar'
 import { Leftbar } from './components/Leftbar'
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import SignIn from './pages/Sigin'
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
      <Routes>
       <Route path='/'>
         <Route index element={<Home/>}/>
+        <Route path='/sign-in' element={<SignIn/>}/>
       </Route>
      </Routes>
      <Rightbar/>
