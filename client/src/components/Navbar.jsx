@@ -3,6 +3,7 @@ import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import { Link } from 'react-router-dom';
 export const Navbar = () => {
   const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -96,9 +97,11 @@ export const Navbar = () => {
 
             />
           </Search>
+         <Link to='/sign-in' style={{color:'inherit'}}>
           <Icons >
           <AccountCircle/>
         </Icons>
+         </Link>
         <UserBox>
           <AccountCircle/>
         </UserBox>

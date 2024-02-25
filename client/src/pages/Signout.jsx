@@ -34,7 +34,7 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function SignIn() {
+export default function Register() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -62,9 +62,19 @@ export default function SignIn() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Register
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <TextField
+              margin="normal"
+              fullWidth
+              required
+              id="name"
+              label="UserName"
+              name="name"
+              autoComplete="name"
+              autoFocus
+              />
             <TextField
               margin="normal"
               fullWidth
@@ -83,7 +93,6 @@ export default function SignIn() {
               label="Password"
               type="password"
               id="password"
-              autoComplete="current-password"
               />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -95,10 +104,10 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               >
-              Sign In
+              Register
             </Button>
-            <Typography component="p" variant="h5">
-            Sign In with
+            <Typography component="h1" variant="h5">
+            Register with?
           </Typography>
             <ButtonGroup sx={{mt: 2, mb:2}} fullWidth variant="outlined" aria-label="Basic button group">
                 <Button startIcon={<GoogleIcon/>} aria-label='Google' type='google' sx={{textAlign:'center'}}>Google</Button>
@@ -113,7 +122,7 @@ export default function SignIn() {
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {"Already have an account? Sign In"}
                 </Link>
               </Grid>
             </Grid>

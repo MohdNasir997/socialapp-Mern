@@ -11,6 +11,7 @@ import ExploreIcon from '@mui/icons-material/Explore';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import SearchIcon from '@mui/icons-material/Search';
+import {Link} from 'react-router-dom';
 
 export const Leftbar = () => {
   return (
@@ -72,11 +73,13 @@ export const Leftbar = () => {
       <Divider />
       <nav aria-label="secondary mailbox folders">
         <List>
+          <Link to='/sign-in' style={{color:'inherit',textDecoration:'none'}}>
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemText primary="Sign In" />
             </ListItemButton>
           </ListItem>
+          </Link>
           <ListItem disablePadding>
             <ListItemButton component="a" href="#simple-list">
               <ListItemText primary="Dark Mode" />
