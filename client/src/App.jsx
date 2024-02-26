@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import SignIn from './pages/Sigin'
 import Register from './pages/Signout'
+import Post from './pages/Post'
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route index element={<Home/>}/>
         <Route path='/sign-in' element={<SignIn/>}/>
         <Route path='/register' element={<Register/>}/>
+        <Route path='/post/:id' element={<Post/>}/>
       </Route>
      </Routes>
      <Rightbar/>
