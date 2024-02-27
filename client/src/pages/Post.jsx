@@ -1,4 +1,5 @@
 import { Box, Divider, Stack, Typography } from "@mui/material"
+import Comment from "../components/Comment"
 
 const Post = () => {
   return (
@@ -23,6 +24,7 @@ const Post = () => {
            <Divider/>
         </Stack>
         {/* {comments} */}
+        <Comment/>
         </Stack>
     </Box>
   )

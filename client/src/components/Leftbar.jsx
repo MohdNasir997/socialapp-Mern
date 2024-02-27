@@ -15,11 +15,11 @@ import {Link} from 'react-router-dom';
 
 export const Leftbar = () => {
   return (
-    <Box flex={1.4} sx={{backgroundColor:'orange'}}>
+    <Box flex={1.4} sx={{border:'black solid 1px'}}>
      <Box sx={{ width: '100%', maxWidth: 300, bgcolor: 'background.paper',position:'sticky',top:0,p:0}}>
       <nav aria-label="main mailbox folders">
         <List>
-          <ListItem disablePadding>
+          <ListItem component={Link} to='/' sx={{color:'inherit'}} disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <HomeIcon />

@@ -9,6 +9,7 @@ import SignIn from './pages/Sigin'
 import Register from './pages/Signout'
 import Post from './pages/Post'
 import AddPost from './pages/AddPost'
+import Message from './pages/Message'
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path='/register' element={<Register/>}/>
         <Route path='/post/:id' element={<Post/>}/>
         <Route path='/add/post' element={<AddPost/>}/>
+        <Route path='/message/:id' element={<Message/>}/>
       </Route>
      </Routes>
      <Rightbar/>
