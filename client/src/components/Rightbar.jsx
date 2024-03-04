@@ -8,8 +8,8 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import React from "react";
-import PostCard from "../components/Card"
 import { Link } from "react-router-dom";
+import { Recommendation } from "./Recommendation";
 
 export const Rightbar = () => {
   
@@ -89,8 +89,7 @@ export const Rightbar = () => {
     <Stack spacing={1}>
     <Typography alignSelf={'center'}>Recommendations</Typography>
     <Divider/>
-    <PostCard/>
-    <PostCard/>
+   <Recommendation />
     </Stack>
     </Stack>
     </Box>

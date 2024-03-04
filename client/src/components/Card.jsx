@@ -13,9 +13,12 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { CardActionArea } from '@mui/material';
 import {Link} from 'react-router-dom';
 
-export default function PostCard() {
+// eslint-disable-next-line react/prop-types
+export default function PostCard({title,desc,img,id}) {
 
-
+  // eslint-disable-next-line react/prop-types
+  const description = desc.substring(0,100);
+  
   
 
   return (
@@ -31,21 +34,19 @@ export default function PostCard() {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
+        title={title}
         subheader="September 14, 2016"
         />
-      <CardActionArea component={Link} to='/post/1'>
+      <CardActionArea component={Link} to={`/post/${id}`} >
       <CardMedia
         component="img"
         height="194"
-        image="https://images.pexels.com/photos/4534200/pexels-photo-4534200.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        image={img? img : "https://images.pexels.com/photos/4534200/pexels-photo-4534200.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"}
         alt="Paella dish"
         />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the mussels,
-          if you like.
+         {description}
         </Typography>
       </CardContent>
       </CardActionArea>

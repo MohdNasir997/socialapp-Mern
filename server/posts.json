@@ -1,0 +1,20 @@
+[
+    {
+        "title":"My first post",
+        "desc":"This post is my first post",
+        "ImgUrl":"https://images.pexels.com/photos/14587408/pexels-photo-14587408.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "UserId": "65e49fd4aabec76290341fd7"
+    },
+    {
+        "title":"My second post",
+        "desc":"This post is my second post on this website",
+        "ImgUrl":"https://images.pexels.com/photos/14587408/pexels-photo-14587408.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "UserId": "65e49fd4aabec76290341fd7"
+    },
+    {
+        "title":"My Third post",
+        "desc":"This post is my third post on this website",
+        "ImgUrl":"https://images.pexels.com/photos/14587408/pexels-photo-14587408.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "UserId": "65e49fd4aabec76290341fd7"
+    }
+]

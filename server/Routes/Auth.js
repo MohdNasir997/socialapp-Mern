@@ -1,4 +1,5 @@
 import {Router} from 'express'
+import { Register } from '../Controllers/AuthController.js';
 
 const router = Router();
 
@@ -6,7 +7,7 @@ const router = Router();
 router.post('/sign-in')
 
 // Sign Up
-router.post('/register')
+router.post('/register',Register)
 
 // Sign Out
 router.get('/sign-out')
