@@ -6,7 +6,7 @@ import { Leftbar } from './components/Leftbar'
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import SignIn from './pages/Sigin'
-import Register from './pages/Signout'
+import Register from './pages/Register'
 import Post from './pages/Post'
 import AddPost from './pages/AddPost'
 import Message from './pages/Message'

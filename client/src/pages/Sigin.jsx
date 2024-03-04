@@ -15,7 +15,7 @@ import { ButtonGroup } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
-
+import axios from 'axios'
 
 function Copyright(props) {
   return (
@@ -38,10 +38,11 @@ export default function SignIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    // console.log({
+    //   email: data.get('email'),
+    //   password: data.get('password'),
+    // });
+    axios.post('/api/auth/sign-in',{name: data.get('name'),password: data.get('password')})
   };
 
   return (
@@ -69,10 +70,10 @@ export default function SignIn() {
               margin="normal"
               fullWidth
               required
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="name"
+              label="User Name"
+              name="name"
+              autoComplete="name"
               autoFocus
               />
             <TextField

@@ -15,6 +15,7 @@ import { ButtonGroup } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import axios from 'axios';
 
 
 function Copyright(props) {
@@ -38,10 +39,11 @@ export default function Register() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    // console.log({
+    //   email: data.get('email'),
+    //   password: data.get('password'),
+    // });
+    axios.post('/api/auth/register',{name:data.get('name'),email:data.get('email'),password:data.get('password')})
   };
 
   return (
