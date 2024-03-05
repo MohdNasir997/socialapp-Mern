@@ -1,9 +1,8 @@
 import { Box, Divider, Stack, Typography } from "@mui/material"
-import Comment from "../components/Comment"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import Comments from "../components/Comments";
 
 const Post = () => {
   const id = useParams().id;
@@ -35,7 +34,7 @@ const Post = () => {
            <Divider/>
         </Stack>
         {/* {comments} */}
-        <Comment/>
+        <Comments id={id}/>
         </Stack>
     </Box>
   )

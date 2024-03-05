@@ -5,7 +5,7 @@ import { Divider, Stack } from '@mui/material'
 
 export const Recommendation = () => {
     const [data,setData] = useState([])
-
+    const newdata = data.splice(0,4)
     useEffect( () => {
         const randomdata = async () => {
             const res = await axios.get('/api/posts')
@@ -15,7 +15,7 @@ export const Recommendation = () => {
     },[])
   return (
     <Stack spacing={2}>
-    {data.map( (post) => (<PostCard key={post._id} title={post.title} desc={post.desc} img={post.ImgUrl}/>))}
+    {newdata.map( (post) => (<PostCard key={post._id} title={post.title} desc={post.desc} img={post.ImgUrl}/>))}
     <Divider sx={{color:'black'}}/>
     </Stack>
   )
