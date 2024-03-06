@@ -31,7 +31,7 @@ export default function PostCard({title,desc,img,id,likes}) {
 
   }
  useEffect(() => {
-  if(likedArray.includes(currentUser._id)) {
+  if(likedArray.includes(currentUser?._id)) {
     setLiked(true)
   }else return setLiked(false)
  },[likes])
