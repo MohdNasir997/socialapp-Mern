@@ -11,19 +11,26 @@ import Post from './pages/Post'
 import AddPost from './pages/AddPost'
 import Message from './pages/Message'
 import Search from './pages/Search'
-
+import { createTheme,ThemeProvider } from '@mui/material'
+import { useState } from 'react'
 
 function App() {
-
+  const [mode,setMode] = useState('light')
+  const theme = createTheme({
+    palette:{
+      mode:mode,
+    }
+  })
   return (
     <>
-    <Box>
+    <ThemeProvider theme={theme}>
+    <Box bgcolor={"background.default"} color={'text.primary'}>
     <BrowserRouter>
     <Stack direction='row' justifyContent='center' alignItems='center'>
-    <Navbar/>
+    <Navbar />
     </Stack>
     <Stack direction="row" justifyContent='space-between'>
-    <Leftbar />
+    <Leftbar mode={mode} setMode={setMode} />
      <Routes>
       <Route path='/'>
         <Route index element={<Home/>}/>
@@ -39,6 +46,7 @@ function App() {
     </Stack>
     </BrowserRouter>
     </Box>
+    </ThemeProvider>
     </>
   )
 }

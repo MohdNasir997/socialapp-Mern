@@ -17,10 +17,9 @@ import { useDispatch, useSelector} from "react-redux";
 import { LogOut } from "../Redux/UserSlice";
 
 
-export const Leftbar = () => {
+export const Leftbar = ({mode,setMode}) => {
   const dispatch = useDispatch()
   const {currentUser} = useSelector(state => state.user)
-  console.log(currentUser)
   const handleSignOut = async () => {
     axios.get('/api/auth/sign-out').then(dispatch(LogOut()))
   }
@@ -97,8 +96,8 @@ export const Leftbar = () => {
           </Link> }
          
           <ListItem disablePadding>
-            <ListItemButton component="a" href="#simple-list">
-              <ListItemText primary="Dark Mode" />
+            <ListItemButton component="a" onClick={e => setMode(mode === 'light'? 'dark' : 'light')} href="#simple-list">
+              <ListItemText primary={`${mode} mode`} />
             </ListItemButton>
           </ListItem>
         </List>
