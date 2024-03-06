@@ -14,9 +14,10 @@ import { CardActionArea } from '@mui/material';
 import {Link} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {useSelector} from 'react-redux'
+import {format} from 'timeago.js'
 import axios from 'axios'
 // eslint-disable-next-line react/prop-types
-export default function PostCard({title,desc,img,id,likes}) {
+export default function PostCard({title,desc,img,id,likes,createdAt}) {
 
   // eslint-disable-next-line react/prop-types
   const description = desc.substring(0,100);
@@ -51,7 +52,7 @@ export default function PostCard({title,desc,img,id,likes}) {
           </IconButton>
         }
         title={title}
-        subheader="September 14, 2016"
+        subheader={createdAt? format(createdAt): 'No time available'}
         />
       <CardActionArea component={Link} to={`/post/${id}`} >
       <CardMedia
