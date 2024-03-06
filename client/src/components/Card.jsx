@@ -12,14 +12,30 @@ import ShareIcon from '@mui/icons-material/Share';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { CardActionArea } from '@mui/material';
 import {Link} from 'react-router-dom';
-
+import { useEffect, useState } from 'react';
+import {useSelector} from 'react-redux'
+import axios from 'axios'
 // eslint-disable-next-line react/prop-types
-export default function PostCard({title,desc,img,id}) {
+export default function PostCard({title,desc,img,id,likes}) {
 
   // eslint-disable-next-line react/prop-types
   const description = desc.substring(0,100);
-  
-  
+  const {currentUser} = useSelector(state => state.user)
+  const [liked,setLiked] = useState(false)
+  const likedArray = likes ? likes : []
+  const handlelikes = async () => {
+    await axios.put(`/api/users/post/like//${id}?user=${currentUser._id}`).then(setLiked(() => true))
+  }
+  const handledislikes = async () => {
+    await axios.put(`/api/users/post/dislike//${id}?user=${currentUser._id}`).then(setLiked(() => false))
+
+  }
+ useEffect(() => {
+  if(likedArray.includes(currentUser._id)) {
+    setLiked(true)
+  }else return setLiked(false)
+ },[likes])
+
 
   return (
     <Card sx={{ maxWidth: 550,margin: 5 }}>
@@ -51,9 +67,12 @@ export default function PostCard({title,desc,img,id}) {
       </CardContent>
       </CardActionArea>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-        <FavoriteIcon/>
-        </IconButton>
+        {liked?  <IconButton aria-label="add to favorites" onClick={handledislikes}>
+        <FavoriteIcon sx={{color:'red'}}/>
+        </IconButton> :  <IconButton aria-label="add to favorites" onClick={handlelikes} >
+        <FavoriteIcon />
+        </IconButton>}
+        
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>

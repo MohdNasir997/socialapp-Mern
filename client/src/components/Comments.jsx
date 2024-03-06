@@ -3,11 +3,18 @@ import axios from 'axios'
 import Comment from "../components/Comment"
 import { Divider, Stack, TextField, Typography } from '@mui/material'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import {useSelector} from "react-redux";
+import { useNavigate } from 'react-router-dom';
+import Tooltip from '@mui/material/Tooltip';
+
 
 
 const Comments = ({id}) => {
   const [data,setData] = useState([])
   const [comment,setComment] = useState('');
+  const {currentUser} = useSelector(state => state.user)
+  let userId =  currentUser?._id
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchcomments = async () => {
@@ -18,7 +25,8 @@ const Comments = ({id}) => {
   
   },[id])
   const handlecomment = async () => {
-    await axios.post(`/api/comments/${id}`,{desc:comment,UserId:'65e5ee9043e8b6a564ad1108'})
+    await axios.post(`/api/comments/${id}`,{desc:comment,UserId:userId}).then(navigate(0))
+    
   }
   return (
     <div>
@@ -26,7 +34,10 @@ const Comments = ({id}) => {
         <Divider/>
         <Stack flexDirection={'row'} marginTop={2} marginBottom={2} alignContent={'baseline'}>
     <TextField sx={{marginLeft: '1px',width:'90%',padding:1}} variant="standard" onChange={(e) => setComment(e.target.value)} placeholder=" Type your comment here"  />
-    <KeyboardArrowRightIcon sx={{border:'black solid 1px',height:'35px'}} onClick={handlecomment} />
+    {currentUser?   <KeyboardArrowRightIcon sx={{border:'black solid 1px',height:'35px'}} onClick={handlecomment} />:   
+    <Tooltip title='Please Sign In'>
+      <KeyboardArrowRightIcon sx={{border:'black solid 1px',height:'35px',backgroundColor:'grey'}} />
+    </Tooltip>}
       </Stack>
       {data.map((comment) => (<Comment key={comment._id} desc={comment.desc} userId={comment.UserId} />))}
     </div>

@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit'
 
-const intialState = {
+const initialState = {
     currentUser: null,
     loading: false,
     error: false
@@ -8,7 +8,7 @@ const intialState = {
 
 export const UserSlice = createSlice({
     name:'user',
-    intialState,
+    initialState,
     reducers:{
         LoginStart: (state) => {
             state.loading = true

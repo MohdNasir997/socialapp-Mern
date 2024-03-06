@@ -18,6 +18,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import axios from 'axios'
 import { useDispatch } from 'react-redux';
 import {LoginStart,LoginFail,LoginSuccess} from '../Redux/UserSlice.js'
+import {useNavigate} from 'react-router-dom'
 
 function Copyright(props) {
   return (
@@ -38,6 +39,7 @@ const defaultTheme = createTheme();
 
 export default function SignIn() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -45,6 +47,7 @@ export default function SignIn() {
     try {
       const res = await axios.post('/api/auth/sign-in',{name: data.get('name'),password: data.get('password')})
       dispatch(LoginSuccess(res.data))
+      navigate('/')
     } catch (error) {
       dispatch(LoginFail())
     }

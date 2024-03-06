@@ -13,7 +13,7 @@ export default function Cards() {
       },[]);
     return (
         <>
-        {data.map( (post) => (<PostCard key={post._id} title={post.title} desc={post.desc} img={post.ImgUrl} id={post._id}/>))}
+        {data.map( (post) => (<PostCard key={post._id} title={post.title} desc={post.desc} img={post.ImgUrl} id={post._id} likes={post.likes}/>))}
         </>
     )
 }

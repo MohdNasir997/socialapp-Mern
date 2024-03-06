@@ -13,13 +13,14 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import SearchIcon from '@mui/icons-material/Search';
 import {Link} from 'react-router-dom';
 import axios from "axios";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { LogOut } from "../Redux/UserSlice";
 
 
 export const Leftbar = () => {
   const dispatch = useDispatch()
   const {currentUser} = useSelector(state => state.user)
+  console.log(currentUser)
   const handleSignOut = async () => {
     axios.get('/api/auth/sign-out').then(dispatch(LogOut()))
   }
@@ -83,8 +84,8 @@ export const Leftbar = () => {
       <Divider />
       <nav aria-label="secondary mailbox folders">
         <List>
-          {currentUser ?  <ListItem disablePadding>
-            <ListItemButton onClick={handleSignOut}> 
+          {currentUser?  <ListItem disablePadding>
+            <ListItemButton onClick={handleSignOut} > 
               <ListItemText primary="Sign Out"  />
             </ListItemButton>
           </ListItem> :  <Link to='/sign-in' style={{color:'inherit',textDecoration:'none'}}>
@@ -93,8 +94,7 @@ export const Leftbar = () => {
               <ListItemText primary="Sign In" />
             </ListItemButton>
           </ListItem>
-          </Link>
-          }
+          </Link> }
          
           <ListItem disablePadding>
             <ListItemButton component="a" href="#simple-list">
