@@ -16,6 +16,8 @@ import GoogleIcon from '@mui/icons-material/Google';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import axios from 'axios'
+import { useDispatch } from 'react-redux';
+import {LoginStart,LoginFail,LoginSuccess} from '../Redux/UserSlice.js'
 
 function Copyright(props) {
   return (
@@ -35,14 +37,18 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
+  const dispatch = useDispatch();
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
-    axios.post('/api/auth/sign-in',{name: data.get('name'),password: data.get('password')})
+    dispatch(LoginStart)
+    try {
+      const res = await axios.post('/api/auth/sign-in',{name: data.get('name'),password: data.get('password')})
+      dispatch(LoginSuccess(res.data))
+    } catch (error) {
+      dispatch(LoginFail())
+    }
+   
   };
 
   return (
@@ -103,7 +109,7 @@ export default function SignIn() {
           </Typography>
             <ButtonGroup sx={{mt: 2, mb:2}} fullWidth variant="outlined" aria-label="Basic button group">
                 <Button startIcon={<GoogleIcon/>} aria-label='Google' type='google' sx={{textAlign:'center'}}>Google</Button>
-                <Button startIcon={<TwitterIcon/>} aria-label='Twiiter' type='twiter'>Twitter</Button>
+                <Button startIcon={<TwitterIcon/>} aria-label='Twiter' type='twiter'>Twitter</Button>
                 <Button startIcon={<FacebookIcon/>} aria-label='facebook' type='facebook'>Facebook</Button>
               </ButtonGroup>
             <Grid container>

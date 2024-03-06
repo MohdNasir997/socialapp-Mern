@@ -1,9 +1,11 @@
-import { AppBar, Box,Toolbar, Typography } from '@mui/material';
+import { AppBar, Box,Toolbar, Typography,Avatar } from '@mui/material';
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { Link } from 'react-router-dom';
+import {  useDispatch, useSelector } from 'react-redux';
+import { LogOut } from '../Redux/UserSlice';
 export const Navbar = () => {
   const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -65,6 +67,8 @@ export const Navbar = () => {
       display: "flex",
     },
   }));
+  const {currentUser} = useSelector(state => state.user)
+  const dispatch = useDispatch()
   return (
     <Box sx={{backgroundColor:'red',position:'static',width:'700px',flex:1}}>
       <AppBar position="static">
@@ -97,13 +101,16 @@ export const Navbar = () => {
 
             />
           </Search>
-         <Link to='/sign-in' style={{color:'inherit'}}>
+          {currentUser? <Avatar alt='User Image' src={currentUser?.ImgUrl} onClick={dispatch(LogOut())}/> :  <Link to='/sign-in' style={{color:'inherit'}}>
           <Icons >
           <AccountCircle/>
         </Icons>
          </Link>
+         }
+        
         <UserBox>
-          <AccountCircle/>
+          {currentUser? <Avatar alt='Account Image' src={currentUser?.ImgUrl} /> : <AccountCircle/> }
+          
         </UserBox>
         </Toolbar>
 
