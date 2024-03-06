@@ -10,6 +10,7 @@ import Register from './pages/Register'
 import Post from './pages/Post'
 import AddPost from './pages/AddPost'
 import Message from './pages/Message'
+import Search from './pages/Search'
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
      <Routes>
       <Route path='/'>
         <Route index element={<Home/>}/>
+        <Route path='/search' element={<Search/>}/>
         <Route path='/sign-in' element={<SignIn/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/post/:id' element={<Post/>}/>

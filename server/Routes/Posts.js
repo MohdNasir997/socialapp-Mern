@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import { createpost, getPost, getposts,randompost } from '../Controllers/PostController.js';
+import { createpost, getPost, getposts,randompost, searchpost } from '../Controllers/PostController.js';
 
 const router = Router();
 
@@ -8,10 +8,10 @@ router.get('/:id',getPost)
 // Get All post
 router.get('/',getposts)
 // Get Random Post
-router.get('/random',randompost)
+router.get('/random/randoms',randompost)
 
 // Get Search Post
-router.get('/search')
+router.get('/search/search',searchpost)
 // Post Create Post
 router.post('/',createpost)
 // PUt Update Post

@@ -40,10 +40,12 @@ export const randompost = async (req,res) => {
 
 
 export const searchpost = async (req,res) => {
+    const search = req.query.search
     try {
-        
+        const searchpost = await PostModel.find({title:{$regex: search,$options: "i"},}).limit(10)
+        res.status(200).json(searchpost)
     } catch (error) {
-        
+        res.json(error)
     }
 }
 
