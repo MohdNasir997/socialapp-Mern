@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import { Register, signIn, signOut } from '../Controllers/AuthController.js';
+import { Register, googleAuth, signIn, signOut } from '../Controllers/AuthController.js';
 
 const router = Router();
 
@@ -14,7 +14,7 @@ router.get('/sign-out',signOut)
 
 // Other Sign In & Register
 
-router.post('/google')
+router.post('/google',googleAuth)
 router.post('/twitter')
 router.post('/facebook')
 

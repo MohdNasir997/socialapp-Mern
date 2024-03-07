@@ -37,3 +37,24 @@ export const Register = async (req,res) => {
         res.json(error)
     }
 }
+
+export const googleAuth = async (req,res) => {
+    try {
+        const user = await Users.findOne({email: req.body.email})
+        if(user) {
+            const token = jwt.sign({user: user._id},process.env.JWT);
+            res.cookie("access_token",token,{
+                httpOnly:true
+            }).status(200).json(user)
+        }else {
+            const newUser = await new Users({...req.body,fromGoogle:true,})
+            const savedUser = await newUser.save()
+            const token = jwt.sign({user: savedUser._id},process.env.JWT)
+            res.cookie("access_token",token,{
+                httpOnly:true
+            }).status(200).json(savedUser)
+        };
+    } catch (error) {
+        console.log(error)
+    }
+}

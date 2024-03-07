@@ -22,7 +22,7 @@ const Search = () => {
     return (
       <Box flex={4}>
           <Wrapper>
-          {data.map((post) => (<PostCard key={post._id} desc={post.desc} title={post.title} createdAt={post.createdAt} img={post.ImgUrl} id={post._id} likes={post.likes}/>))}
+          {data.map((post) => (<PostCard key={post._id} desc={post.desc} title={post.title} createdAt={post.createdAt} img={post.ImgUrl} id={post._id} likes={post.likes} userId={post.UserId}/>))}
           
           </Wrapper>
       </Box>

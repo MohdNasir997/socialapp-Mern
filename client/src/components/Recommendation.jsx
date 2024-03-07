@@ -15,7 +15,7 @@ export const Recommendation = () => {
     },[])
   return (
     <Stack spacing={2}>
-    {newdata.map( (post) => (<PostCard key={post._id} title={post.title} desc={post.desc} img={post.ImgUrl}/>))}
+    {newdata.map( (post) => (<PostCard key={post._id} title={post.title} desc={post.desc} img={post.ImgUrl} userId={post.UserId} createdAt={post.createdAt}/>))}
     <Divider sx={{color:'black'}}/>
     </Stack>
   )

@@ -19,6 +19,8 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux';
 import {LoginStart,LoginFail,LoginSuccess} from '../Redux/UserSlice.js'
 import {useNavigate} from 'react-router-dom'
+import {auth,provider} from '../firebase.js'
+import { signInWithPopup } from "firebase/auth";
 
 function Copyright(props) {
   return (
@@ -53,7 +55,29 @@ export default function SignIn() {
     }
    
   };
-
+   const SignInWithGoogle = async (e) => {
+    e.preventDefault()
+    dispatch(LoginStart())
+    signInWithPopup(auth, provider)
+  .then((result) => {
+    
+    const user = result.user;
+    // IdP data available using getAdditionalUserInfo(result)
+    axios.post(`/api/auth/google`,{
+      name: user.displayName,
+      email: user.email,
+      ImgUrl: user.photoURL
+    }).then((res) => {
+      dispatch(LoginSuccess(res.data))
+      navigate('/')
+    })
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+     console.log(error)
+     dispatch(LoginFail())
+  });
+   }
   return (
     <ThemeProvider theme={defaultTheme}>
         <Box width={740}>
@@ -111,7 +135,7 @@ export default function SignIn() {
             Sign In with
           </Typography>
             <ButtonGroup sx={{mt: 2, mb:2}} fullWidth variant="outlined" aria-label="Basic button group">
-                <Button startIcon={<GoogleIcon/>} aria-label='Google' type='google' sx={{textAlign:'center'}}>Google</Button>
+                <Button startIcon={<GoogleIcon/>} aria-label='Google' type='google' sx={{textAlign:'center'}} onClick={SignInWithGoogle}>Google</Button>
                 <Button startIcon={<TwitterIcon/>} aria-label='Twiter' type='twiter'>Twitter</Button>
                 <Button startIcon={<FacebookIcon/>} aria-label='facebook' type='facebook'>Facebook</Button>
               </ButtonGroup>

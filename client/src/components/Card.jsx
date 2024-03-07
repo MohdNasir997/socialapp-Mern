@@ -17,10 +17,11 @@ import {useSelector} from 'react-redux'
 import {format} from 'timeago.js'
 import axios from 'axios'
 // eslint-disable-next-line react/prop-types
-export default function PostCard({title,desc,img,id,likes,createdAt}) {
+export default function PostCard({title,desc,img,id,likes,createdAt,userId}) {
 
   // eslint-disable-next-line react/prop-types
   const description = desc.substring(0,100);
+  const [user,setUser] = useState([])
   const {currentUser} = useSelector(state => state.user)
   const [liked,setLiked] = useState(false)
   const likedArray = likes ? likes : []
@@ -36,15 +37,20 @@ export default function PostCard({title,desc,img,id,likes,createdAt}) {
     setLiked(true)
   }else return setLiked(false)
  },[likes])
-
+ useEffect(() => {
+  const fetchuser = async () => {
+    const res = await axios.get(`/api/users/${userId}`)
+    setUser(res.data)
+  }
+  fetchuser()
+},[])
 
   return (
     <Card sx={{ maxWidth: 550,margin: 5 }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
-          </Avatar>
+          <Avatar sx={{ bgcolor: red[500] }} src={user?.ImgUrl} aria-label="recipe" />
+            
         }
         action={
           <IconButton aria-label="settings">
