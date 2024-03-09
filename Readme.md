@@ -1,6 +1,6 @@
 # Social App
 
-This is a Social App, where Users can post,like,comment on posts, sign up using Google,Twitter and create new posts to share with other users.
+This is a Social App, where Users can post,like,comment on posts, sign up using Google,Twitter and create new posts to share with other users. You can access this app through this [link](https://socialapp.my.to/)
 
 This App is build using MERN stack, other technologies used are the following.
 
