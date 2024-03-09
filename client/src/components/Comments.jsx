@@ -34,7 +34,7 @@ const Comments = ({id}) => {
         <Divider/>
         <Stack flexDirection={'row'} marginTop={2} marginBottom={2} alignContent={'baseline'}>
     <TextField sx={{marginLeft: '1px',width:'90%',padding:1}} variant="standard" onChange={(e) => setComment(e.target.value)} placeholder=" Type your comment here"  />
-    {currentUser?   <KeyboardArrowRightIcon sx={{border:'black solid 1px',height:'35px'}} onClick={handlecomment} />:   
+    {currentUser?   <KeyboardArrowRightIcon sx={{border:'black solid 1px',height:'35px','&:hover':{backgroundColor:'teal'}}} onClick={handlecomment} />:   
     <Tooltip title='Please Sign In'>
       <KeyboardArrowRightIcon sx={{border:'black solid 1px',height:'35px',backgroundColor:'grey'}} />
     </Tooltip>}

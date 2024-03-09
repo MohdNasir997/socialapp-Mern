@@ -16,7 +16,7 @@ const Post = () => {
     fetchpost()
   },[id])
   return (
-    <Box  flexDirection={"column"} justifyContent={'space-between'} p={1}>
+    <Box  flexDirection={"column"} justifyContent={'space-between'} p={1} >
         <Stack direction={'column'} spacing={4} marginTop={3}>
         <Stack sx={{width:'900px',height: '350px'}}>
          <img src={post.ImgUrl} style={{objectFit:"cover" ,overflow:'hidden'}}></img>

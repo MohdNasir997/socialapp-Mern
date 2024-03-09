@@ -12,7 +12,7 @@ const Home = () => {
     const {currentUser} = useSelector(state => state.user)
   
   return (
-    <Box flex={4}>
+    <Box flex={4} >
         <Wrapper>
         <Cards />
         {currentUser? <Fab color="primary" aria-label="add" sx={{position:'fixed',bottom:'10%',right:'55%'}} component={Link} to='/add/post'>

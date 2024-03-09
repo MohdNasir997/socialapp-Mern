@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import { Register, googleAuth, signIn, signOut } from '../Controllers/AuthController.js';
+import { Register, facebookAuth, googleAuth, signIn, signOut, twiiterAuth } from '../Controllers/AuthController.js';
 
 const router = Router();
 
@@ -15,8 +15,8 @@ router.get('/sign-out',signOut)
 // Other Sign In & Register
 
 router.post('/google',googleAuth)
-router.post('/twitter')
-router.post('/facebook')
+router.post('/twitter',twiiterAuth)
+router.post('/facebook',facebookAuth)
 
 
 

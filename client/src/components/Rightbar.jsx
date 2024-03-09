@@ -7,7 +7,7 @@ import { Recommendation } from "./Recommendation";
 export const Rightbar = () => {
   
   return (
-    <Box flex={2} border={'black solid 1px'} >
+    <Box flex={2} border={'black solid 1px'} sx={{display:{ xs:'none',sm:'none',md:'block'}}} >
       <Stack position={'sticky'} top={0} spacing={1}>
     <Divider/>
     <Stack spacing={1}>

@@ -25,7 +25,7 @@ export const Leftbar = ({mode,setMode}) => {
   }
 
   return (
-    <Box flex={1.4} sx={{border:'black solid 1px'}}>
+    <Box flex={1.4} sx={{border:'black solid 1px',display:{xs:'none',sm:'block'}}}>
      <Box sx={{ width: '100%', maxWidth: 300, bgcolor: 'background.paper',position:'sticky',top:0,p:0}}>
       <nav aria-label="main mailbox folders">
         <List>

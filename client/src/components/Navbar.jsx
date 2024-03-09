@@ -102,7 +102,7 @@ export const Navbar = () => {
           >
             Social App
           </Typography>
-          <Search >
+          <Search sx={{display:{sm:'none',lg:'block'}}} >
             <StyledInputBase 
               sx={{width:350}}
               placeholder="Search…"
@@ -111,10 +111,10 @@ export const Navbar = () => {
               
               />
           </Search>
-          <IconButton sx={{position:'relative',right:600}} onClick={handleSeachInput}>
+          <IconButton sx={{position:'relative',right:600,display:{xs:'none',xl:'block'}}} onClick={handleSeachInput}>
               <SearchIcon/>
             </IconButton>
-          {currentUser? <Tooltip title={currentUser?.name}> <Avatar src={currentUser?.ImgUrl} alt='User Image'/></Tooltip> :  <Link to='/sign-in' style={{color:'inherit'}}> 
+          {currentUser? <Tooltip title={currentUser?.name}> <Avatar sx={{display:{xs:'none',sm:'block'}}} src={currentUser?.ImgUrl} alt='User Image'/></Tooltip> :  <Link to='/sign-in' style={{color:'inherit'}}> 
           <Icons >
           <Tooltip title='Sign-In'>
           <AccountCircle/>

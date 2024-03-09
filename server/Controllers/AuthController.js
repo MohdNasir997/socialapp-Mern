@@ -58,3 +58,45 @@ export const googleAuth = async (req,res) => {
         console.log(error)
     }
 }
+
+export const twiiterAuth = async (req,res) => {
+    try {
+        const user = await Users.findOne({name: req.body.name,fromTwitter:true})
+        if(user) {
+            const token = jwt.sign({user: user._id},process.env.JWT);
+            res.cookie("access_token",token,{
+                httpOnly:true
+            }).status(200).json(user)
+        }else {
+            const newUser = await new Users({...req.body,fromTwitter:true,})
+            const savedUser = await newUser.save()
+            const token = jwt.sign({user: savedUser._id},process.env.JWT)
+            res.cookie("access_token",token,{
+                httpOnly:true
+            }).status(200).json(savedUser)
+        };
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const facebookAuth = async (req,res) => {
+    try {
+        const user = await Users.findOne({name: req.body.name,fromFacebook:true})
+        if(user) {
+            const token = jwt.sign({user: user._id},process.env.JWT);
+            res.cookie("access_token",token,{
+                httpOnly:true
+            }).status(200).json(user)
+        }else {
+            const newUser = await new Users({...req.body,fromFacebook:true,})
+            const savedUser = await newUser.save()
+            const token = jwt.sign({user: savedUser._id},process.env.JWT)
+            res.cookie("access_token",token,{
+                httpOnly:true
+            }).status(200).json(savedUser)
+        };
+    } catch (error) {
+        console.log(error)
+    }
+}

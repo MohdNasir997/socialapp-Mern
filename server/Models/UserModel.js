@@ -9,7 +9,6 @@ const UserSchema = schema({
     },
     email: {
         type: String,
-        required: true
     },
     password: {
         type: String,
@@ -22,6 +21,10 @@ const UserSchema = schema({
         default:false
     },
     fromTwitter:{
+        type:Boolean,
+        default:false
+    },
+    fromFacebook:{
         type:Boolean,
         default:false
     }

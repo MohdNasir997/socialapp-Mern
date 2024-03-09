@@ -19,7 +19,7 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux';
 import {LoginStart,LoginFail,LoginSuccess} from '../Redux/UserSlice.js'
 import {useNavigate} from 'react-router-dom'
-import {auth,provider} from '../firebase.js'
+import {auth,provider,twitterProvider} from '../firebase.js'
 import { signInWithPopup } from "firebase/auth";
 
 function Copyright(props) {
@@ -78,6 +78,27 @@ export default function SignIn() {
      dispatch(LoginFail())
   });
    }
+   const SignInWithTwiter = async (e) => {
+    e.preventDefault()
+    dispatch(LoginStart)
+    signInWithPopup(auth, twitterProvider)
+  .then((result) => {
+  
+    const user = result.user;
+    axios.post('/api/auth/twitter',{
+      name:user.displayName,
+      ImgUrl:user.photoURL,
+    }).then((res) => {
+      dispatch(LoginSuccess(res.data))
+      navigate('/')
+    })
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    console.log(error)
+  });
+   }
+
   return (
     <ThemeProvider theme={defaultTheme}>
         <Box width={740}>
@@ -136,7 +157,7 @@ export default function SignIn() {
           </Typography>
             <ButtonGroup sx={{mt: 2, mb:2}} fullWidth variant="outlined" aria-label="Basic button group">
                 <Button startIcon={<GoogleIcon/>} aria-label='Google' type='google' sx={{textAlign:'center'}} onClick={SignInWithGoogle}>Google</Button>
-                <Button startIcon={<TwitterIcon/>} aria-label='Twiter' type='twiter'>Twitter</Button>
+                <Button startIcon={<TwitterIcon/>} aria-label='Twiter' type='twiter' onClick={SignInWithTwiter}>Twitter</Button>
                 <Button startIcon={<FacebookIcon/>} aria-label='facebook' type='facebook'>Facebook</Button>
               </ButtonGroup>
             <Grid container>
@@ -148,6 +169,7 @@ export default function SignIn() {
               <Grid item>
                 <Link href="/register" variant="body2">
                   {"Don't have an account? Sign Up"}
+                  
                 </Link>
               </Grid>
             </Grid>
